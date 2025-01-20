@@ -74,6 +74,7 @@ body {
   justify-content: center;
   gap: 10px; /* Add space between dropdowns and swap button */
   margin: 10px 0; /* Optional: Add margin for better spacing */
+  gap: 15px;
 }
 
 .controls,
