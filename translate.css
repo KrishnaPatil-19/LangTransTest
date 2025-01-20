@@ -21,12 +21,13 @@ body {
 .container {
   max-width: 100%;
   width: 90%;
-  margin: auto;
+  margin: 0 auto;
   box-sizing: border-box; /* Ensure padding doesn't affect overall width */
-  padding: 30px;
+  padding: 1rem;
   background: #fff;
   border-radius: 7px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.474);
+  box-sizing: border-box;
 }
 
 /* Wrapper Styles */
@@ -56,9 +57,9 @@ body {
   outline: none;
   resize: none;
   background: none;
-  font-size: 18px;
-  padding: 10px 15px;
-  border-radius: 5px;
+  font-size: 16px; /* Adjust font size */
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 /* Placeholder Color */
@@ -99,6 +100,16 @@ li,
   transition: color 0.3s ease;
 }
 
+/* Dropdown and buttons */
+.controls select,
+.controls button {
+  width: 100%; /* Full width on smaller screens */
+  font-size: 16px;
+  margin: 8px 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
 .container .exchange:hover {
     color: #777777;
 }
@@ -106,12 +117,12 @@ li,
 /* Button Styling */
 .container button {
   width: 100%;
-  padding: 14px;
+  padding: 12px 16px;
   border: none;
   color: #fff;
   cursor: pointer;
-  margin-top: 20px;
-  font-size: 17px;
+  margin: 8px 0;
+  font-size: 16px;
   border-radius: 5px;
   background: #5372f0;
   transition: background 0.3s ease;
@@ -124,23 +135,19 @@ li,
 
 
 /* Responsive Adjustments */
-/* Adjust input and button styles for smaller screens */
+/* Media query for small screens */
 @media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+
   .text-input textarea {
-    width: 100%;
-    font-size: 14px;
-    padding: 10px;
+    font-size: 14px; /* Smaller font size */
   }
 
-  .controls select, .controls button {
-    width: 100%;
+  .controls select,
+  .controls button {
     font-size: 14px;
-    margin-top: 8px;
-  }
-
-  .container button {
-    padding: 10px;
-    font-size: 14px;
-    width: 100%;
+    padding: 8px;
   }
 }

@@ -74,30 +74,39 @@ speechSynthesis.onvoiceschanged = () => {
 // Adding functionality to icons (copy and speech)
 icons.forEach((icon) => {
   icon.addEventListener("click", ({ target }) => {
-    if (!fromText.value.trim() && !toText.value.trim()) return;
+    const text = target.id === "from" ? fromText.value : toText.value;
+    const lang = target.id === "from" ? selectTag[0].value : selectTag[1].value;
 
-    if (target.classList.contains("fa-copy")) {
-      const textToCopy = target.id === "from" ? fromText.value : toText.value;
-      navigator.clipboard
-        .writeText(textToCopy)
-        .then(() => alert("Text copied to clipboard!"))
-        .catch(() => alert("Failed to copy text."));
-    } else if (target.classList.contains("fa-volume-up")) {
-      const text = target.id === "from" ? fromText.value : toText.value;
-      const lang = target.id === "from" ? selectTag[0].value : selectTag[1].value;
+    if (target.classList.contains("fa-volume-up")) {
+      if (!text.trim()) {
+        alert("No text available to read.");
+        return;
+      }
 
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = lang;
 
-      const voices = speechSynthesis.getVoices();
-      const selectedVoice = voices.find((voice) => voice.lang === lang);
+      // Wait for voices to load
+      speechSynthesis.onvoiceschanged = () => {
+        const voices = speechSynthesis.getVoices();
+        const selectedVoice = voices.find((voice) => voice.lang === lang);
 
-      if (selectedVoice) {
-        utterance.voice = selectedVoice;
-        speechSynthesis.speak(utterance);
-      } else {
-        alert(`Voice output is not available for ${lang}`);
-      }
+        if (selectedVoice) {
+          utterance.voice = selectedVoice;
+          speechSynthesis.speak(utterance);
+        } else {
+          const langNames = {
+            "en-US": "English (US)",
+            "hi-IN": "Hindi",
+            // Add other languages here
+          };
+          alert(
+            `Voice output is not available for ${
+              langNames[lang] || "this language"
+            }.`
+          );
+        }
+      };
     }
   });
 });
