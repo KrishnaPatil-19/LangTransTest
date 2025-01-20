@@ -72,19 +72,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px; /* Add space between dropdowns and swap button */
-  margin: 10px 0; /* Optional: Add margin for better spacing */
-  gap: 15px;
+  gap: 20px; /* Increased gap for better spacing between dropdowns and swap button */
+  margin: 15px 0; /* Additional spacing around controls */
 }
 
-.controls,
-li,
-.icons,
-.icons i {
+.controls .row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 2.5px;
+  gap: 10px; /* Space between icons and dropdowns */
 }
 
 /* Dropdown and Icon Styles */
@@ -93,35 +89,41 @@ li,
   color: #939393;
   font-size: 14px;
   cursor: pointer;
-  transition: transform 0.2s ease;
-  transition: color 0.3s ease;
+  transition: transform 0.2s ease, color 0.3s ease;
   margin-left: 10px;
 }
 
 .controls .row .icons i:hover {
-    color: #777777;
+  color: #777777;
 }
+
 .controls .exchange {
   color: #939393;
   cursor: pointer;
-  font-size: 16px;
-  transition: transform 0.2s ease;
-  transition: color 0.3s ease;
+  font-size: 20px; /* Larger size for better visibility */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background-color: #f9f9f9;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, color 0.3s ease;
 }
 
-/* Dropdown and buttons */
-.controls select,
-.controls button {
-  width: 100%; /* Full width on smaller screens */
-  flex: 1; /* Ensure the elements scale properly */
+.controls .exchange:hover {
+  background-color: #e6e6e6;
+  color: #777777;
+}
+
+/* Dropdown Styling */
+.controls select {
+  flex: 1; /* Ensure dropdowns expand properly */
   font-size: 16px;
-  margin: 8px 0;
   padding: 8px;
   box-sizing: border-box;
-}
-
-.container .exchange:hover {
-    color: #777777;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
 }
 
 /* Button Styling */
@@ -139,10 +141,8 @@ li,
 }
 
 .container button:hover {
-    background: #4965d6;
+  background: #4965d6;
 }
-
-
 
 /* Responsive Adjustments */
 /* Media query for small screens */
@@ -159,5 +159,9 @@ li,
   .controls button {
     font-size: 14px;
     padding: 8px;
+  }
+
+  .controls .exchange {
+    font-size: 16px; /* Adjusted size for smaller screens */
   }
 }
