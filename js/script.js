@@ -83,25 +83,21 @@ icons.forEach((icon) => {
         .then(() => alert("Text copied to clipboard!"))
         .catch(() => alert("Failed to copy text."));
     } else if (target.classList.contains("fa-volume-up")) {
-      const utterance = new SpeechSynthesisUtterance(
-        target.id === "from" ? fromText.value : toText.value
-      );
-      utterance.lang =
-        target.id === "from" ? selectTag[0].value : selectTag[1].value;
+      const text = target.id === "from" ? fromText.value : toText.value;
+      const lang = target.id === "from" ? selectTag[0].value : selectTag[1].value;
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = lang;
 
       const voices = speechSynthesis.getVoices();
-      if (voices.length === 0) {
-        alert("Speech synthesis voices are not loaded yet.");
-        return;
+      const selectedVoice = voices.find((voice) => voice.lang === lang);
+
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
+        speechSynthesis.speak(utterance);
+      } else {
+        alert(`Voice output is not available for ${lang}`);
       }
-
-      const selectedVoice = voices.find(
-        (voice) => voice.lang === utterance.lang
-      );
-      if (selectedVoice) utterance.voice = selectedVoice;
-      else alert(`No voice available for: ${utterance.lang}`);
-
-      speechSynthesis.speak(utterance);
     }
   });
 });
