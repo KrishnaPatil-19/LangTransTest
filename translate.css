@@ -68,6 +68,14 @@ body {
 }
 
 /* Controls Styling */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Add space between dropdowns and swap button */
+  margin: 10px 0; /* Optional: Add margin for better spacing */
+}
+
 .controls,
 li,
 .icons,
@@ -104,9 +112,10 @@ li,
 .controls select,
 .controls button {
   width: 100%; /* Full width on smaller screens */
+  flex: 1; /* Ensure the elements scale properly */
   font-size: 16px;
   margin: 8px 0;
-  padding: 10px;
+  padding: 8px;
   box-sizing: border-box;
 }
 
